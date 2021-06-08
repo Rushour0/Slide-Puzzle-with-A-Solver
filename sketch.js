@@ -172,7 +172,7 @@ function setup()
       return false;
     }
   }
-  total_rows = 4;
+  total_rows = 3;
   cell_width = width / total_rows; 
 
   background(BACKGROUND_COLOR);

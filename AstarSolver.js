@@ -35,6 +35,16 @@ function AstarSolver(start,end)
       let neighbor = current_neighbors[current_neighbor];
       let temp_g = g_score[current_state] + 1;
 
+      if (checkSameState(neighbor,end))
+      {
+        parent_node[neighbor] = current_state;
+        generatepath(parent_node, neighbor, solved_state);
+        console.log("REACHED");
+        console.log(neighbor);
+        running = false;
+        return true;
+      }
+
       if (g_score[neighbor] == undefined)
       {
         g_score[neighbor] = Infinity;
@@ -66,7 +76,7 @@ async function generatepath(parent_node, start, end)
     console.log(parent_state);
     changeInNull(this_state,parent_state);
     this_state = parent_state;
-    await sleep(100);
+    await sleep(150);
   }
   console.log("DONE")
 }
@@ -85,13 +95,14 @@ async function changeInNull(this_state,next_state)
   if (vertical == -1)boxes[next_state_null[0]][next_state_null[1]].moveUp();
   if (horizontal == 1)boxes[next_state_null[0]][next_state_null[1]].moveRight();
   if (horizontal == -1)boxes[next_state_null[0]][next_state_null[1]].moveLeft();
-  await sleep(100);
+  await sleep(150);
   return true;
 }
 
 function h(current_state,final_state)
 {
-  let score = 0;
+  let manhattan_score = 0;
+  let misplaced_tiles_score = 0;
   for(let i = 0;i<total_rows;i++)
   {
     for (let j = 0;j<total_rows;j++)
@@ -102,11 +113,14 @@ function h(current_state,final_state)
         if (current_state[row].includes(check))
         {
           col = current_state[row].indexOf(check);
-          score+=abs(i-row)+abs(j-col);
+          md = abs(i-row)+abs(j-col);
+          manhattan_score+=md;
+          if (md!=0)misplaced_tiles_score++;
+
           break;
         }
       }
     }
   }
-  return score;
+  return manhattan_score+misplaced_tiles_score;
 }
