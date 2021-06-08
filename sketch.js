@@ -90,7 +90,7 @@ function setup()
       {
         this.clear();
         this.change(0,-this.cell_width/10);
-        await sleep(5);
+        //await sleep(5);
       }
       running = false;
 
@@ -110,7 +110,7 @@ function setup()
       {
         this.clear();
         this.change(0,this.cell_width/10);
-        await sleep(5);
+        //await sleep(5);
       }
       running = false;
 
@@ -130,7 +130,7 @@ function setup()
       {
         this.clear();
         this.change(-this.cell_width/10,0);
-        await sleep(5);
+        //await sleep(5);
       }
       running = false;
 
@@ -150,7 +150,7 @@ function setup()
       {
         this.clear();
         this.change(this.cell_width/10,0);
-        await sleep(5);
+        //await sleep(5);
       }
       running = false;
 
@@ -198,7 +198,7 @@ function setup()
 
 function draw()
 {
-
+  boxes
 }
 
 
