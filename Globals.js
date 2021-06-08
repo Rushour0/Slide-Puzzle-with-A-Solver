@@ -3,8 +3,8 @@ function sleep(ms) {
 }
 
 var boxes = [];
+var total_rows = 3;
 var cell_width;
-var total_rows;
 var running = false;
 var solved_state = [];
 var state = [];
