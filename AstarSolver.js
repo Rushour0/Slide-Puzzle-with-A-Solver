@@ -82,7 +82,7 @@ async function generatepath(parent_node, start, end)
     parent_state = parent_node[this_state];
     changeInNull(this_state,parent_state);
     this_state = parent_state;
-    //await sleep(150);
+    await sleep(150);
   }
   console.log("DONE")
 }
@@ -99,7 +99,7 @@ async function changeInNull(this_state,next_state)
   if (vertical == -1)boxes[next_state_null[0]][next_state_null[1]].moveUp();
   if (horizontal == 1)boxes[next_state_null[0]][next_state_null[1]].moveRight();
   if (horizontal == -1)boxes[next_state_null[0]][next_state_null[1]].moveLeft();
-  //await sleep(150);
+  await sleep(150);
   return true;
 }
 

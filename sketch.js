@@ -90,7 +90,7 @@ function setup()
       {
         this.clear();
         this.change(0,-this.cell_width/10);
-        //await sleep(5);
+        await sleep(5);
       }
       running = false;
 
@@ -110,7 +110,7 @@ function setup()
       {
         this.clear();
         this.change(0,this.cell_width/10);
-        //await sleep(5);
+        await sleep(5);
       }
       running = false;
 
@@ -130,7 +130,7 @@ function setup()
       {
         this.clear();
         this.change(-this.cell_width/10,0);
-        //await sleep(5);
+        await sleep(5);
       }
       running = false;
 
@@ -150,7 +150,7 @@ function setup()
       {
         this.clear();
         this.change(this.cell_width/10,0);
-        //await sleep(5);
+        await sleep(5);
       }
       running = false;
 
@@ -171,7 +171,8 @@ function setup()
       if (this.col < total_rows-1 && boxes[this.row][this.col+1] == null) return this.moveRight();
       return false;
     }
-  }cell_width = width / total_rows; 
+  } 
+  cell_width = width / total_rows; 
 
   background(BACKGROUND_COLOR);
 
@@ -198,7 +199,7 @@ function setup()
 
 function draw()
 {
-  boxes
+
 }
 
 
