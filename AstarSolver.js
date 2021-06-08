@@ -1,5 +1,6 @@
 function AstarSolver(start,end)
 {
+  var t0 = performance.now()
   let count = 0;
   let open_nodes = new PriorityQueue();
   let open_nodes_track = new Set();
@@ -23,8 +24,10 @@ function AstarSolver(start,end)
     {
       generatepath(parent_node, current_state, solved_state);
       console.log("REACHED");
-      console.log(current_state);
+      //console.log(current_state);
       running = false;
+      var t1 = performance.now()
+      console.log(t1-t0);
       return true;
     }
 
@@ -42,6 +45,8 @@ function AstarSolver(start,end)
         console.log("REACHED");
         console.log(neighbor);
         running = false;
+        var t1 = performance.now()
+        console.log(t1-t0);
         return true;
       }
 
@@ -60,6 +65,8 @@ function AstarSolver(start,end)
       }
     }      
   }
+  var t1 = performance.now()
+  console.log(t1-t0);
   running = false;
   return false;
 }
@@ -73,7 +80,6 @@ async function generatepath(parent_node, start, end)
   while (!checkSameState(this_state,end))
   {
     parent_state = parent_node[this_state];
-    console.log(parent_state);
     changeInNull(this_state,parent_state);
     this_state = parent_state;
     await sleep(150);
@@ -87,10 +93,8 @@ async function changeInNull(this_state,next_state)
   let next_state_null = getNull(next_state);
   let vertical = this_state_null[0]-next_state_null[0];
   let horizontal = this_state_null[1]-next_state_null[1];
-  console.log("WAS CALLED");
-  console.log(this_state_null);
-  console.log(next_state_null);
-  console.log(vertical,horizontal);
+  //console.log("WAS CALLED");
+
   if (vertical == 1)boxes[next_state_null[0]][next_state_null[1]].moveDown();
   if (vertical == -1)boxes[next_state_null[0]][next_state_null[1]].moveUp();
   if (horizontal == 1)boxes[next_state_null[0]][next_state_null[1]].moveRight();
@@ -99,7 +103,47 @@ async function changeInNull(this_state,next_state)
   return true;
 }
 
-function h(current_state,final_state)
+
+function LinearConflict(current_state,final_state)
+{
+  let score = 0;
+  for(let i = 0;i<current_state.length;i++)
+  {
+    score+=SingleConflict(JSON.parse(JSON.stringify(current_state[i])),JSON.parse(JSON.stringify(final_state[i])));
+  }
+  let current_columns = getColumns(current_state);
+  let final_columns = getColumns(final_state);
+  for(let i = 0;i<current_columns.length;i++)
+  {
+    score+=SingleConflict(JSON.parse(JSON.stringify(current_columns[i])),JSON.parse(JSON.stringify(final_columns[i])));
+  }
+  return score;
+}
+
+function SingleConflict(current_line,final_line)
+{
+  let score = 0;
+  var position = [];
+  for (let i = 0;i<total_rows;i++)
+  {
+    if (final_line[i] in Object.values(current_line))
+    {
+      position.push(i);
+    }
+  }
+  for(let i = 0;i<position.length;i++)
+  {
+    for(let j = i+1;j<position.length;j++)
+    {
+      if(position[j]<position[i])
+      {
+        score+=position[i]-position[j]+2;
+      }
+    }
+  }
+  return score;
+}
+function ManhattanMisplaced(current_state,final_state)
 {
   let manhattan_score = 0;
   let misplaced_tiles_score = 0;
@@ -123,4 +167,10 @@ function h(current_state,final_state)
     }
   }
   return manhattan_score+misplaced_tiles_score;
+}
+
+function h(current_state,final_state)
+{
+  let score = ManhattanMisplaced(current_state,final_state) + LinearConflict(current_state,final_state);
+  return score;
 }

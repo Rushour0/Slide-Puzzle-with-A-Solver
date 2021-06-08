@@ -70,6 +70,21 @@ function checkSameState(state1,state2)
   return true;
 }
 
+function getColumns(current_state)
+{
+  let all_col = [];
+  let temp_col = [];
+  for(let i = 0;i<current_state.length;i++)
+  {
+    temp_col = [];
+    for(let j = 0;j<current_state[i].length;j++)
+    {
+      temp_col.push(current_state[i][j]);
+    }
+    all_col.push(temp_col);
+  }
+  return JSON.parse(JSON.stringify(all_col));
+}
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }

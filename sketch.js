@@ -171,8 +171,7 @@ function setup()
       if (this.col < total_rows-1 && boxes[this.row][this.col+1] == null) return this.moveRight();
       return false;
     }
-  }
-  cell_width = width / total_rows; 
+  }cell_width = width / total_rows; 
 
   background(BACKGROUND_COLOR);
 
