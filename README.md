@@ -7,7 +7,7 @@ A simple project to implement A* algorithm.
 ### Scrambled state!
 ![scramble](https://user-images.githubusercontent.com/72869428/125684376-a48e07f5-dae7-4d76-b6fd-29ec2696831b.png) 
 
-&#855;&#855;&#855;&#855;&#855;&#855;&#855;&#855;&#855;&#855;&#855;&#855;&#855;&#855;&#855;&#855;&#855;&#855;&#855;
+&#8595 &#8595 &#8595 &#8595 &#8595 &#8595 &#8595 &#8595 &#8595 &#8595 &#8595 &#8595 &#8595 &#8595 &#8595 &#8595 &#8595 &#8595 &#8595 &#8595 &#8595 &#8595 &#8595 &#8595 ;
 
 ### Unscrambled or solved state!
 ![unscramble](https://user-images.githubusercontent.com/72869428/125684379-d143b544-b667-4a84-bdb0-e0ec02968956.png)
