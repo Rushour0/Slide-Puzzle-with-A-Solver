@@ -2,7 +2,7 @@
 
 A simple project to implement A* algorithm.
 
-**This slide puzzle solver utilizes A* as its path finding algorithm and treats each move as a state/node and using Manhattan heuristic and Multiple pieces' wise manhattan heuristic, the A* algorithm finds the shortest route back to it's unscrambled state.**
+__This slide puzzle solver utilizes A* as its path finding algorithm and treats each move as a state/node and using Manhattan heuristic and Multiple pieces' wise manhattan heuristic, the A* algorithm finds the shortest route back to it's unscrambled state__
 
 ### Scrambled state!
 ![scramble](https://user-images.githubusercontent.com/72869428/125684376-a48e07f5-dae7-4d76-b6fd-29ec2696831b.png) 
