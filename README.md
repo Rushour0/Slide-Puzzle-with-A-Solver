@@ -7,13 +7,13 @@ A simple project to implement A* algorithm.
 ### Scrambled state!
 ![scramble](https://user-images.githubusercontent.com/72869428/125684376-a48e07f5-dae7-4d76-b6fd-29ec2696831b.png) 
 
-↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ 
+↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓
 ### Unscrambled or solved state!
 ![unscramble](https://user-images.githubusercontent.com/72869428/125684379-d143b544-b667-4a84-bdb0-e0ec02968956.png)
 
 ## How to play with/test this puzzle solver?
 - Simply **scramble** the 8-puzzle.
 - **Click on a piece** which is near to the open space and it will move to the empty space.
-- =Press **R** to start unscrambling
+- Press **R** to start unscrambling
 
  _[Slide 8-Puzzle](https://rushour0.github.io/Slide-Puzzle-with-A-Solver/)_
