@@ -1,6 +1,5 @@
 
-function setup() 
-{
+function setup() {
   var is_height = true;
   var cnv;
 
@@ -35,10 +34,8 @@ function setup()
   var DEFAULT = CORAL;
   var SOLVED_COLOR = GREEN;
 
-  class Box
-  {
-    constructor(x,y,row,col,cell_width,Text = null)
-    {
+  class Box {
+    constructor(x, y, row, col, cell_width, Text = null) {
       this.x = x;
       this.y = y;
       this.row = row;
@@ -50,129 +47,116 @@ function setup()
 
       noStroke();
       fill(this.color);
-      square(this.x,this.y,this.cell_width,this.cell_width/10);
-      
-      textSize(this.cell_width/4);
+      square(this.x, this.y, this.cell_width, this.cell_width / 10);
+
+      textSize(this.cell_width / 4);
       fill(BLACK);
-      textAlign(CENTER,CENTER);
-      text(this.Text,this.x+this.cell_width/2,this.y+this.cell_width/2);
+      textAlign(CENTER, CENTER);
+      text(this.Text, this.x + this.cell_width / 2, this.y + this.cell_width / 2);
     }
-    clear(val = false,x = null,y = null, cell_width = null)
-    {
-      if (!val)
-      {
+    clear(val = false, x = null, y = null, cell_width = null) {
+      if (!val) {
         noStroke();
         fill(BACKGROUND_COLOR);
-        square(this.x,this.y,this.cell_width,this.cell_width/10);
+        square(this.x, this.y, this.cell_width, this.cell_width / 10);
       }
-      else
-      {
+      else {
         noStroke();
         fill(BACKGROUND_COLOR);
-        square(x,y,cell_width,this.cell_width/10);
+        square(x, y, cell_width, this.cell_width / 10);
       }
     }
-    change(x,y)
-    {
+    change(x, y) {
       fill(this.color);
       this.x += x;
       this.y += y;
-      square(this.x,this.y,this.cell_width,this.cell_width/10);
-      textSize(this.cell_width/4);
+      square(this.x, this.y, this.cell_width, this.cell_width / 10);
+      textSize(this.cell_width / 4);
       fill(BLACK);
-      textAlign(CENTER,CENTER);
-      text(this.Text,this.x+this.cell_width/2,this.y+this.cell_width/2);
+      textAlign(CENTER, CENTER);
+      text(this.Text, this.x + this.cell_width / 2, this.y + this.cell_width / 2);
     }
-    async moveUp()
-    {
+    async moveUp() {
       running = true;
-      for(let i = 0;i<10;i++)
-      {
+      for (let i = 0; i < 10; i++) {
         this.clear();
-        this.change(0,-this.cell_width/10);
+        this.change(0, -this.cell_width / 10);
         await sleep(5);
       }
       running = false;
 
-      this.row-=1;
-      boxes[this.row][this.col] = new Box(this.x,this.y,this.row,this.col,this.cell_width,this.Text);
+      this.row -= 1;
+      boxes[this.row][this.col] = new Box(this.x, this.y, this.row, this.col, this.cell_width, this.Text);
       state[this.row][this.col] = this.value;
-      boxes[this.row+1][this.col] = null;
-      state[this.row+1][this.col] = null;
+      boxes[this.row + 1][this.col] = null;
+      state[this.row + 1][this.col] = null;
 
-      this.clear(true,this.x,this.y+this.cell_width,this.cell_width);
+      this.clear(true, this.x, this.y + this.cell_width, this.cell_width);
       return true;
     }
-    async moveDown()
-    {
+    async moveDown() {
       running = true;
-      for(let i = 0;i<10;i++)
-      {
+      for (let i = 0; i < 10; i++) {
         this.clear();
-        this.change(0,this.cell_width/10);
+        this.change(0, this.cell_width / 10);
         await sleep(5);
       }
       running = false;
 
-      this.row+=1;
-      boxes[this.row][this.col] = new Box(this.x,this.y,this.row,this.col,this.cell_width,this.Text);
+      this.row += 1;
+      boxes[this.row][this.col] = new Box(this.x, this.y, this.row, this.col, this.cell_width, this.Text);
       state[this.row][this.col] = this.value;
-      boxes[this.row-1][this.col] = null;
-      state[this.row-1][this.col] = null;
+      boxes[this.row - 1][this.col] = null;
+      state[this.row - 1][this.col] = null;
 
-      this.clear(true,this.x,this.y-this.cell_width,this.cell_width);
+      this.clear(true, this.x, this.y - this.cell_width, this.cell_width);
       return true;
     }
-    async moveLeft()
-    {
+    async moveLeft() {
       running = true;
-      for(let i = 0;i<10;i++)
-      {
+      for (let i = 0; i < 10; i++) {
         this.clear();
-        this.change(-this.cell_width/10,0);
+        this.change(-this.cell_width / 10, 0);
         await sleep(5);
       }
       running = false;
 
-      this.col-=1;
-      boxes[this.row][this.col] = new Box(this.x,this.y,this.row,this.col,this.cell_width,this.Text);
+      this.col -= 1;
+      boxes[this.row][this.col] = new Box(this.x, this.y, this.row, this.col, this.cell_width, this.Text);
       state[this.row][this.col] = this.value;
-      boxes[this.row][this.col+1] = null;
-      state[this.row][this.col+1] = null;
+      boxes[this.row][this.col + 1] = null;
+      state[this.row][this.col + 1] = null;
 
-      this.clear(true,this.x+this.cell_width,this.y,this.cell_width);
+      this.clear(true, this.x + this.cell_width, this.y, this.cell_width);
       return true;
     }
-    async moveRight()
-    {
+    async moveRight() {
       running = true;
-      for(let i = 0;i<10;i++)
-      {
+      for (let i = 0; i < 10; i++) {
         this.clear();
-        this.change(this.cell_width/10,0);
+        this.change(this.cell_width / 10, 0);
         await sleep(5);
       }
       running = false;
 
-      this.col+=1;
-      boxes[this.row][this.col] = new Box(this.x,this.y,this.row,this.col,this.cell_width,this.Text);
+      this.col += 1;
+      boxes[this.row][this.col] = new Box(this.x, this.y, this.row, this.col, this.cell_width, this.Text);
       state[this.row][this.col] = this.value;
-      boxes[this.row][this.col-1] = null;
-      state[this.row][this.col-1] = null;
+      boxes[this.row][this.col - 1] = null;
+      state[this.row][this.col - 1] = null;
 
-      this.clear(true,this.x-this.cell_width,this.y,this.cell_width);
+      this.clear(true, this.x - this.cell_width, this.y, this.cell_width);
       return true;
     }
-    clickMove()
-    {
-      if (this.row > 0 && boxes[this.row-1][this.col] == null) return this.moveUp();
-      if (this.row < total_rows-1 && boxes[this.row+1][this.col] == null) return this.moveDown();
-      if (this.col > 0 && boxes[this.row][this.col-1] == null) return this.moveLeft();
-      if (this.col < total_rows-1 && boxes[this.row][this.col+1] == null) return this.moveRight();
+    async clickMove() {
+      if (this.row > 0 && boxes[this.row - 1][this.col] == null) return await this.moveUp();
+      if (this.row < total_rows - 1 && boxes[this.row + 1][this.col] == null) return await this.moveDown();
+      if (this.col > 0 && boxes[this.row][this.col - 1] == null) return await this.moveLeft();
+      if (this.col < total_rows - 1 && boxes[this.row][this.col + 1] == null) return await this.moveRight();
       return false;
     }
-  } 
-  cell_width = width / total_rows; 
+  }
+  cell_width = width / total_rows;
 
   background(BACKGROUND_COLOR);
 
@@ -185,9 +169,9 @@ function setup()
     solved_state[row] = [];
     col = 0;
     for (let x = 0; x < width; x += cell_width) {
-      if (row == total_rows-1 && col == total_rows-1)boxes[row].push(null);
-      else boxes[row].push(new Box(x, y, row, col, cell_width,str(row*total_rows+col+1)));
-      if (boxes[row][col] != null)solved_state[row].push(row*total_rows+col+1);
+      if (row == total_rows - 1 && col == total_rows - 1) boxes[row].push(null);
+      else boxes[row].push(new Box(x, y, row, col, cell_width, str(row * total_rows + col + 1)));
+      if (boxes[row][col] != null) solved_state[row].push(row * total_rows + col + 1);
       else solved_state[row].push(null);
       col += 1;
     }
@@ -197,41 +181,34 @@ function setup()
   state = JSON.parse(JSON.stringify(solved_state));
 }
 
-function draw()
-{
+function draw() {
 
 }
 
 
 
-function keyPressed(){
-  if (keyIsPressed)
-  {
+async function keyPressed() {
+  if (keyIsPressed) {
     if (keyIsDown(82)) {
-      AstarSolver(solved_state,JSON.parse(JSON.stringify(state)));
+      await AstarSolver(solved_state, JSON.parse(JSON.stringify(state)));
       return true;
     }
   }
 }
 
-function mouseClicked() 
-{
-  if (!running)
-  {
-    let row = floor(mouseY/cell_width);
-    let col = floor(mouseX/cell_width);
-    try
-    {
-      if (mouseButton == LEFT)
-      {
+async function mouseClicked() {
+  if (!running) {
+    let row = floor(mouseY / cell_width);
+    let col = floor(mouseX / cell_width);
+    try {
+      if (mouseButton == LEFT) {
         let node = boxes[row][col];
-        if (node==null)return;
-        node.clickMove();
+        if (node == null) return;
+        await node.clickMove();
         //console.log(boxes);
       }
     }
-    catch(e)
-    {}
+    catch (e) { }
   }
 }
 
